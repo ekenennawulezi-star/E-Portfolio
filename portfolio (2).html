@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio &mdash; Ekene Nnawulezi</title>
+<style>
+/* ===== Tokens ===== */
+:root{
+  --navy:#0E2238;
+  --surface:#F2F4F5;
+  --paper:#FFFFFF;
+  --ink:#16202B;
+  --ink-soft:#4A5A68;
+  --amber:#C96A12;
+  --amber-bright:#E8932E;
+  --teal:#1B7A72;
+  --line:#C7D0D6;
+  --line-dark:rgba(255,255,255,0.14);
+
+  --display:'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --body:'Source Serif 4', Georgia, serif;
+  --mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+
+*{box-sizing:border-box;}
+header,nav,section,footer,article{display:block;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--surface);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+}
+img{max-width:100%;display:block;}
+a{color:var(--teal);text-decoration-thickness:1.5px;}
+a:hover{color:var(--amber);}
+:focus-visible{outline:3px solid var(--amber-bright);outline-offset:3px;}
+
+h1,h2,h3{font-family:var(--display);color:var(--navy);margin:0 0 .4em;letter-spacing:-0.01em;}
+h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:700;}
+h2{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:600;}
+h3{font-size:1.15rem;font-weight:600;}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.78rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin:0 0 .8em;
+}
+
+/* ===== Layout shell ===== */
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+
+/* ===== Nav ===== */
+.site-nav{
+  background:var(--navy);
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-bottom:1px solid var(--line-dark);
+}
+.site-nav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-top:14px;
+  padding-bottom:14px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.05rem;
+  text-decoration:none;
+}
+.brand-mark{
+  font-family:var(--mono);
+  background:var(--amber-bright);
+  color:var(--navy);
+  font-weight:700;
+  font-size:.85rem;
+  padding:5px 8px;
+  border-radius:3px;
+  letter-spacing:.04em;
+}
+.site-nav nav{display:flex;gap:26px;}
+.site-nav nav a{margin-left:26px;}
+.site-nav nav a:first-child{margin-left:0;}
+.site-nav nav a{
+  color:#D7DEE4;
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.04em;
+  text-decoration:none;
+  padding:4px 0;
+  border-bottom:2px solid transparent;
+}
+.site-nav nav a:hover,
+.site-nav nav a.active{
+  color:#fff;
+  border-bottom-color:var(--amber-bright);
+}
+
+/* ===== Hero ===== */
+.hero{
+  background:var(--navy);
+  color:#fff;
+  padding:64px 0 50px;
+}
+.hero .subhead{
+  color:#C7D5DC;
+  font-size:1.15rem;
+  max-width:620px;
+  margin:0 0 36px;
+}
+.hero-graphic{
+  width:100%;
+  max-width:760px;
+  margin:0 0 36px;
+}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.03em;
+  text-decoration:none;
+  padding:12px 22px;
+  border-radius:3px;
+  border:1.5px solid transparent;
+  transition:transform .12s ease;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn-primary{background:var(--amber-bright);color:var(--navy);}
+.btn-primary:hover{background:#f3a546;color:var(--navy);}
+.btn-ghost{border-color:#5A7080;color:#fff;}
+.btn-ghost:hover{border-color:var(--amber-bright);color:#fff;}
+
+/* ===== Status panel ===== */
+.status-panel{
+  background:var(--navy);
+  border-top:1px solid var(--line-dark);
+  padding:26px 0 40px;
+}
+.status-line{
+  font-family:var(--mono);
+  font-size:.92rem;
+  color:#D7DEE4;
+  margin:0 0 12px;
+  padding-left:18px;
+  border-left:3px solid var(--teal);
+}
+.status-label{
+  color:var(--amber-bright);
+  font-weight:600;
+  margin-right:10px;
+}
+
+/* ===== About / generic sections ===== */
+section.page-section{padding:56px 0;}
+.about p{max-width:680px;}
+.placeholder-note{
+  font-family:var(--mono);
+  font-size:.82rem;
+  color:var(--ink-soft);
+  background:#E4E9EC;
+  border-left:3px solid var(--amber);
+  padding:10px 14px;
+  display:inline-block;
+}
+
+/* ===== Page intro (portfolio/resume) ===== */
+.page-intro{background:var(--paper);border-bottom:1px solid var(--line);padding:54px 0 40px;}
+.page-intro .subhead{color:var(--ink-soft);max-width:640px;font-size:1.05rem;}
+
+/* ===== Artifact grid ===== */
+.artifact-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+  padding:46px 0;
+}
+.artifact-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:24px 26px;
+}
+.tag{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:3px;
+  margin-bottom:12px;
+  color:#fff;
+}
+.tag-compliance{background:var(--navy);}
+.tag-data{background:var(--teal);}
+.tag-sysadmin{background:#3D5567;}
+.tag-cyber{background:var(--amber);}
+.tag-network{background:#2E6B82;}
+.tag-ops{background:#5B6B3F;}
+.tag-build{background:var(--amber-bright);color:var(--navy);}
+.artifact-card p{margin:0 0 10px;font-size:.97rem;}
+.artifact-note{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--ink-soft);
+  font-style:normal;
+  margin-top:14px;
+  border-top:1px dashed var(--line);
+  padding-top:10px;
+}
+
+/* ===== External link block ===== */
+.external-link-block{background:var(--paper);border-top:1px solid var(--line);padding:46px 0 60px;}
+.external-links{list-style:none;padding:0;margin:14px 0 0;display:flex;gap:18px;flex-wrap:wrap;}
+.external-links a{
+  font-family:var(--mono);
+  font-size:.92rem;
+  border:1.5px solid var(--teal);
+  padding:9px 16px;
+  border-radius:3px;
+  display:inline-block;
+}
+.external-links a:hover{background:var(--teal);color:#fff;}
+
+/* ===== Resume ===== */
+.resume-doc{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:46px 50px;
+  margin:46px 0 60px;
+}
+.resume-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;border-bottom:2px solid var(--navy);padding-bottom:18px;margin-bottom:26px;}
+.resume-head h1{margin:0;font-size:2rem;}
+.resume-contact{font-family:var(--mono);font-size:.82rem;color:var(--ink-soft);text-align:right;}
+.resume-section{margin-bottom:28px;}
+.resume-section h2{
+  font-size:.92rem;
+  font-family:var(--mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--teal);
+  border-bottom:1px solid var(--line);
+  padding-bottom:6px;
+  margin-bottom:14px;
+}
+.resume-entry{margin-bottom:16px;}
+.resume-entry-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.resume-entry-head strong{font-family:var(--display);font-size:1.02rem;color:var(--navy);}
+.resume-entry-head span{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);}
+.resume-entry ul{margin:8px 0 0;padding-left:20px;}
+.resume-entry li{margin-bottom:6px;font-size:.96rem;}
+.skill-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-pill{
+  font-family:var(--mono);
+  font-size:.8rem;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:3px;
+  padding:5px 11px;
+}
+
+/* ===== Footer ===== */
+.site-footer{
+  background:var(--navy);
+  color:#9FB0BA;
+  text-align:center;
+  padding:26px 0;
+  font-family:var(--mono);
+  font-size:.78rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:760px){
+  .artifact-grid{grid-template-columns:1fr;}
+  .site-nav .wrap{flex-direction:column;align-items:flex-start;gap:10px;}
+  .resume-doc{padding:30px 22px;}
+  .resume-contact{text-align:left;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .btn{transition:none;}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span> Ekene Nnawulezi</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="resume.html">R&eacute;sum&eacute;</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-intro">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio</p>
+    <h1>Selected Work</h1>
+    <p class="subhead">Seven artifacts spanning cybersecurity coursework, live IT operations, compliance documentation, and independent projects. Each entry represents a distinct skill area targeted at entry-level cybersecurity and systems administration roles.</p>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="wrap">
+    <div class="artifact-grid">
+
+      <article class="artifact-card">
+        <p class="tag tag-cyber">Cybersecurity &mdash; Offensive Security</p>
+        <h3>Vulnerability Assessment &amp; Penetration Testing Lab</h3>
+        <p>Built a virtual lab environment running both Windows and Linux virtual machines to simulate a real-world network for security testing. Used Nmap to perform host discovery and port scanning, identifying open services and potential attack surfaces. Applied Metasploit to test known CVEs against the virtual targets, successfully exploiting vulnerabilities and documenting the steps taken. Wrote a full findings report covering each vulnerability discovered, its severity, and a recommended remediation for each &mdash; mirroring the deliverable expected in a real penetration testing engagement.</p>
+        <p><strong>Skills demonstrated:</strong> Nmap, Metasploit, virtual machine setup, vulnerability documentation, remediation recommendations.</p>
+      </article>
+
+      <article class="artifact-card">
+        <p class="tag tag-cyber">Cybersecurity &mdash; Defensive / SOC</p>
+        <h3>Network Traffic Analysis &amp; Incident Triage</h3>
+        <p>Analyzed PCAP (packet capture) files using Wireshark to identify suspicious network behavior and indicators of compromise (IOCs). Identified anomalous traffic patterns including unusual outbound connections, unrecognized protocols, and signs of potential data exfiltration. Produced written incident analysis reports documenting each finding, the evidence trail, and the recommended response actions &mdash; the same core workflow performed by a Tier 1 SOC analyst during an active investigation.</p>
+        <p><strong>Skills demonstrated:</strong> Wireshark, PCAP analysis, IOC identification, incident report writing, SOC analyst workflow.</p>
+      </article>
+
+      <article class="artifact-card">
+        <p class="tag tag-network">Networking &amp; Network Security</p>
+        <h3>Secure Network Architecture Design</h3>
+        <p>Designed a multi-segment secure network topology in Cisco Packet Tracer, incorporating subnetting, VLAN segmentation, and firewall rule configuration. Applied defense-in-depth principles by layering access controls at the perimeter, between segments, and at the host level. The design addressed real-world security requirements including restricting inter-VLAN traffic, controlling inbound and outbound flows, and isolating sensitive systems. Also completed traceroute analysis assignments tracing traffic across international providers including Charter/Spectrum, Akamai, and NORDUnet, documenting routing behavior and latency patterns.</p>
+        <p><strong>Skills demonstrated:</strong> Cisco Packet Tracer, subnetting, VLAN design, firewall rules, defense-in-depth, traceroute analysis.</p>
+      </article>
+
+      <article class="artifact-card">
+        <p class="tag tag-compliance">Compliance &amp; Technical Writing</p>
+        <h3>HUD-Compliant Tenant Notices &amp; Policy Documents</h3>
+        <p>As part of my internship with the Suffolk Redevelopment and Housing Authority, I drafted a full set of HUD-compliant legal and operational documents for use across three public housing properties. Documents produced include lease termination notices, formal grievance procedure forms, tenant entry and work-authorization notices, and pre-REAC inspection resident notices &mdash; all sourced directly from SRHA's Admissions and Continued Occupancy Policy (ACOP) and aligned with HUD's NSPIRE inspection standards. Each document had to meet specific regulatory language requirements while remaining clear and readable for tenants. This work required understanding federal housing policy, translating regulatory requirements into plain language, and producing documents on official agency letterhead.</p>
+        <p><strong>Skills demonstrated:</strong> HUD/NSPIRE compliance, ACOP policy interpretation, legal document drafting, technical and regulatory writing.</p>
+      </article>
+
+      <article class="artifact-card">
+        <p class="tag tag-sysadmin">System Administration</p>
+        <h3>IT Operations Support &mdash; Suffolk Redevelopment &amp; Housing Authority</h3>
+        <p>Since May 2026, I have been supporting IT operations as a System Administrator Intern at SRHA, a HUD-regulated public housing authority serving the City of Suffolk, Virginia. Responsibilities include day-to-day systems support across multiple office locations, coordinating an internet service provider migration from Spectrum to Glo Fiber while ensuring continuity of a long-standing agency email address, and maintaining data systems used across three housing properties (Colander Bishop Meadows, Hoffler Apartments, and Chorey Park). This internship has provided hands-on experience in a real IT environment with live systems, regulated data, and operational accountability &mdash; not a lab simulation.</p>
+        <p><strong>Skills demonstrated:</strong> Systems administration, ISP migration coordination, IT operations support, HUD-regulated environment, multi-property data management.</p>
+      </article>
+
+      <article class="artifact-card">
+        <p class="tag tag-data">Data Systems &amp; Operations</p>
+        <h3>Multi-Property Data Organization &amp; Reporting</h3>
+        <p>Built and maintained a version-controlled Excel workbook tracking outstanding tenant balances and payment tier classifications across three housing properties, with a structured change log maintained between each revision. Additionally, transcribed and reorganized a multi-unit handwritten maintenance inspection list covering over 30 units at Hoffler Apartments into a categorized, filterable Excel workbook with three tabs: one sorted by issue category (electrical, plumbing, mold, refrigerator gaskets, smoke detectors, windows), one sorted by unit number, and a summary matrix showing issue counts per unit. This system made property-wide maintenance planning significantly faster and gave management a clear view of where the heaviest repair loads were concentrated.</p>
+        <p><strong>Skills demonstrated:</strong> Microsoft Excel, data organization, version control, operational reporting, multi-property data management.</p>
+      </article>
+
+      <article class="artifact-card">
+        <p class="tag tag-build">Independent Project &amp; Technical Documentation</p>
+        <h3>2012 Dodge Durango Citadel &mdash; Digital Modernization Build</h3>
+        <p>Independently researching and documenting a full digital retrofit of a 2012 Dodge Durango Citadel AWD as a content and documentation project. The build targets a gap in existing online resources: almost no documentation exists for modernizing the 2012&ndash;2013 Durango specifically. Research areas include CAN bus PID mapping and OBD-II compatibility for a CANavie 12.3&Prime; digital instrument cluster swap, CarPlay/Android Auto integration, 2014+ racetrack LED tail light conversion, and exhaust and powertrain upgrades for the 5.7L Hemi. This project demonstrates the ability to independently research complex technical systems, synthesize information from fragmented sources, and produce structured documentation &mdash; the same skill set applied to IT systems work.</p>
+        <p><strong>Skills demonstrated:</strong> Independent technical research, CAN bus / OBD-II systems, structured documentation, hardware integration planning.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="external-link-block">
+  <div class="wrap">
+    <h2>Credentials &amp; Further Reading</h2>
+    <p>More on the certification path I'm working through and the program I'm enrolled in:</p>
+    <ul class="external-links">
+      <li><a href="https://www.comptia.org/en-us/certifications/" target="_blank" rel="noopener">CompTIA Certifications &#8599;</a></li>
+      <li><a href="https://www.odu.edu/cyber" target="_blank" rel="noopener">ODU School of Cybersecurity &#8599;</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">Ekene Nnawulezi &middot; ePortfolio &middot; Old Dominion University</div>
+</footer>
+
+</body>
+</html>

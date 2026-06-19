@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekene Nnawulezi &mdash; Systems, Compliance &amp; Builds</title>
+<style>
+/* ===== Tokens ===== */
+:root{
+  --navy:#0E2238;
+  --surface:#F2F4F5;
+  --paper:#FFFFFF;
+  --ink:#16202B;
+  --ink-soft:#4A5A68;
+  --amber:#C96A12;
+  --amber-bright:#E8932E;
+  --teal:#1B7A72;
+  --line:#C7D0D6;
+  --line-dark:rgba(255,255,255,0.14);
+
+  --display:'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --body:'Source Serif 4', Georgia, serif;
+  --mono:'IBM Plex Mono', 'Courier New', monospace;
+}
+
+*{box-sizing:border-box;}
+header,nav,section,footer,article{display:block;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--surface);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+}
+img{max-width:100%;display:block;}
+a{color:var(--teal);text-decoration-thickness:1.5px;}
+a:hover{color:var(--amber);}
+:focus-visible{outline:3px solid var(--amber-bright);outline-offset:3px;}
+
+h1,h2,h3{font-family:var(--display);color:var(--navy);margin:0 0 .4em;letter-spacing:-0.01em;}
+h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:700;}
+h2{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:600;}
+h3{font-size:1.15rem;font-weight:600;}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.78rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin:0 0 .8em;
+}
+
+/* ===== Layout shell ===== */
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+
+/* ===== Nav ===== */
+.site-nav{
+  background:var(--navy);
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-bottom:1px solid var(--line-dark);
+}
+.site-nav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-top:14px;
+  padding-bottom:14px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.05rem;
+  text-decoration:none;
+}
+.brand-mark{
+  font-family:var(--mono);
+  background:var(--amber-bright);
+  color:var(--navy);
+  font-weight:700;
+  font-size:.85rem;
+  padding:5px 8px;
+  border-radius:3px;
+  letter-spacing:.04em;
+}
+.site-nav nav{display:flex;gap:26px;}
+.site-nav nav a{margin-left:26px;}
+.site-nav nav a:first-child{margin-left:0;}
+.site-nav nav a{
+  color:#D7DEE4;
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.04em;
+  text-decoration:none;
+  padding:4px 0;
+  border-bottom:2px solid transparent;
+}
+.site-nav nav a:hover,
+.site-nav nav a.active{
+  color:#fff;
+  border-bottom-color:var(--amber-bright);
+}
+
+/* ===== Hero ===== */
+.hero{
+  background:var(--navy);
+  color:#fff;
+  padding:64px 0 50px;
+}
+.hero .subhead{
+  color:#C7D5DC;
+  font-size:1.15rem;
+  max-width:620px;
+  margin:0 0 36px;
+}
+.hero-graphic{
+  width:100%;
+  max-width:760px;
+  margin:0 0 36px;
+}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.03em;
+  text-decoration:none;
+  padding:12px 22px;
+  border-radius:3px;
+  border:1.5px solid transparent;
+  transition:transform .12s ease;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn-primary{background:var(--amber-bright);color:var(--navy);}
+.btn-primary:hover{background:#f3a546;color:var(--navy);}
+.btn-ghost{border-color:#5A7080;color:#fff;}
+.btn-ghost:hover{border-color:var(--amber-bright);color:#fff;}
+
+/* ===== Status panel ===== */
+.status-panel{
+  background:var(--navy);
+  border-top:1px solid var(--line-dark);
+  padding:26px 0 40px;
+}
+.status-line{
+  font-family:var(--mono);
+  font-size:.92rem;
+  color:#D7DEE4;
+  margin:0 0 12px;
+  padding-left:18px;
+  border-left:3px solid var(--teal);
+}
+.status-label{
+  color:var(--amber-bright);
+  font-weight:600;
+  margin-right:10px;
+}
+
+/* ===== About / generic sections ===== */
+section.page-section{padding:56px 0;}
+.about p{max-width:680px;}
+.placeholder-note{
+  font-family:var(--mono);
+  font-size:.82rem;
+  color:var(--ink-soft);
+  background:#E4E9EC;
+  border-left:3px solid var(--amber);
+  padding:10px 14px;
+  display:inline-block;
+}
+
+/* ===== Page intro (portfolio/resume) ===== */
+.page-intro{background:var(--paper);border-bottom:1px solid var(--line);padding:54px 0 40px;}
+.page-intro .subhead{color:var(--ink-soft);max-width:640px;font-size:1.05rem;}
+
+/* ===== Artifact grid ===== */
+.artifact-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+  padding:46px 0;
+}
+.artifact-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:24px 26px;
+}
+.tag{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:3px;
+  margin-bottom:12px;
+  color:#fff;
+}
+.tag-compliance{background:var(--navy);}
+.tag-data{background:var(--teal);}
+.tag-sysadmin{background:#3D5567;}
+.tag-cyber{background:var(--amber);}
+.tag-network{background:#2E6B82;}
+.tag-ops{background:#5B6B3F;}
+.tag-build{background:var(--amber-bright);color:var(--navy);}
+.artifact-card p{margin:0 0 10px;font-size:.97rem;}
+.artifact-note{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--ink-soft);
+  font-style:normal;
+  margin-top:14px;
+  border-top:1px dashed var(--line);
+  padding-top:10px;
+}
+
+/* ===== External link block ===== */
+.external-link-block{background:var(--paper);border-top:1px solid var(--line);padding:46px 0 60px;}
+.external-links{list-style:none;padding:0;margin:14px 0 0;display:flex;gap:18px;flex-wrap:wrap;}
+.external-links a{
+  font-family:var(--mono);
+  font-size:.92rem;
+  border:1.5px solid var(--teal);
+  padding:9px 16px;
+  border-radius:3px;
+  display:inline-block;
+}
+.external-links a:hover{background:var(--teal);color:#fff;}
+
+/* ===== Resume ===== */
+.resume-doc{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:46px 50px;
+  margin:46px 0 60px;
+}
+.resume-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;border-bottom:2px solid var(--navy);padding-bottom:18px;margin-bottom:26px;}
+.resume-head h1{margin:0;font-size:2rem;}
+.resume-contact{font-family:var(--mono);font-size:.82rem;color:var(--ink-soft);text-align:right;}
+.resume-section{margin-bottom:28px;}
+.resume-section h2{
+  font-size:.92rem;
+  font-family:var(--mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--teal);
+  border-bottom:1px solid var(--line);
+  padding-bottom:6px;
+  margin-bottom:14px;
+}
+.resume-entry{margin-bottom:16px;}
+.resume-entry-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.resume-entry-head strong{font-family:var(--display);font-size:1.02rem;color:var(--navy);}
+.resume-entry-head span{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);}
+.resume-entry ul{margin:8px 0 0;padding-left:20px;}
+.resume-entry li{margin-bottom:6px;font-size:.96rem;}
+.skill-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-pill{
+  font-family:var(--mono);
+  font-size:.8rem;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:3px;
+  padding:5px 11px;
+}
+
+/* ===== Footer ===== */
+.site-footer{
+  background:var(--navy);
+  color:#9FB0BA;
+  text-align:center;
+  padding:26px 0;
+  font-family:var(--mono);
+  font-size:.78rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:760px){
+  .artifact-grid{grid-template-columns:1fr;}
+  .site-nav .wrap{flex-direction:column;align-items:flex-start;gap:10px;}
+  .resume-doc{padding:30px 22px;}
+  .resume-contact{text-align:left;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .btn{transition:none;}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span> Ekene Nnawulezi</a>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="resume.html">R&eacute;sum&eacute;</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Systems &middot; Compliance &middot; Builds</p>
+    <h1>Ekene Nnawulezi</h1>
+    <p class="subhead">I'm a cybersecurity student and IT professional working at the intersection of HUD housing compliance, network security, and hands-on technical projects.</p>
+    <svg class="hero-graphic" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hg-title hg-desc">
+  <title id="hg-title">Circuit trace into instrument gauge</title>
+  <desc id="hg-desc">A single line motif: a right-angled circuit-board trace on the left resolves into a vehicle instrument gauge arc with a needle on the right.</desc>
+
+  <!-- faint blueprint grid -->
+  <g stroke="#C7D0D6" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="40" x2="900" y2="40"/>
+    <line x1="0" y1="220" x2="900" y2="220"/>
+  </g>
+
+  <!-- circuit trace (left) -->
+  <g stroke="#E8932E" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10,150 H110 V90 H210 V190 H300 V150 H370"/>
+  </g>
+  <g fill="#E8932E">
+    <circle cx="10" cy="150" r="5"/>
+    <circle cx="110" cy="150" r="5"/>
+    <circle cx="110" cy="90" r="5"/>
+    <circle cx="210" cy="90" r="5"/>
+    <circle cx="210" cy="190" r="5"/>
+    <circle cx="300" cy="190" r="5"/>
+    <circle cx="300" cy="150" r="5"/>
+  </g>
+  <rect x="195" y="75" width="30" height="30" fill="none" stroke="#E8932E" stroke-width="2.5"/>
+
+  <!-- transition -->
+  <path d="M370,150 C430,150 440,60 520,60" stroke="#16202B" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+  <!-- gauge arc -->
+  <path d="M520,60 A130,130 0 0 1 650,190" stroke="#1B7A72" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M650,190 A130,130 0 0 1 780,60" stroke="#1B7A72" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-dasharray="2 10"/>
+
+  <!-- ticks -->
+  <g stroke="#16202B" stroke-width="2.5" stroke-linecap="round">
+    <line x1="522" y1="78" x2="535" y2="90"/>
+    <line x1="560" y1="50" x2="568" y2="65"/>
+    <line x1="608" y1="42" x2="611" y2="59"/>
+    <line x1="655" y1="44" x2="654" y2="61"/>
+  </g>
+
+  <!-- needle + pivot -->
+  <line x1="650" y1="190" x2="600" y2="95" stroke="#E8932E" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="650" cy="190" r="10" fill="#16202B"/>
+  <circle cx="650" cy="190" r="4" fill="#F2F4F5"/>
+</svg>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="portfolio.html">View Portfolio</a>
+      <a class="btn btn-ghost" href="resume.html">View R&eacute;sum&eacute;</a>
+    </div>
+  </div>
+</section>
+
+<section class="status-panel">
+  <div class="wrap">
+    <p class="status-line"><span class="status-label">ROLE</span>System Administrator Intern &mdash; Suffolk Redevelopment &amp; Housing Authority</p>
+    <p class="status-line"><span class="status-label">STUDY</span>Old Dominion University &mdash; B.S. Cybersecurity, NSA CAE-designated program &middot; ISC2 CC, CompTIA Network+ &amp; Security+ in progress</p>
+    <p class="status-line"><span class="status-label">BUILD</span>2012 Dodge Durango Citadel &mdash; independent modernization &amp; documentation project</p>
+  </div>
+</section>
+
+<section class="page-section about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>I'm a cybersecurity student at Old Dominion University, currently working as a System Administrator Intern with the Suffolk Redevelopment and Housing Authority. My internship work spans HUD-regulated compliance documentation, data systems, and day-to-day IT support across three housing properties. In my coursework, I've built vulnerability assessment and penetration testing labs, analyzed network traffic for incident response, and designed secure network architectures &mdash; and I'm currently working toward the ISC2 CC, CompTIA Network+, and CompTIA Security+ certifications. I'm looking for an entry-level cybersecurity or systems administration role where I can put both sides of that experience to work. Outside of class and the internship, I document independent technical projects, including a full digital modernization of a 2012 Dodge Durango Citadel.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">Draft site &middot; Entrepreneur Website Project &middot; Old Dominion University</div>
+</footer>
+
+</body>
+</html>
